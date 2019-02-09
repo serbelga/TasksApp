@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "62490183814",
+    "firebase_url": "https://tasks-77c8a.firebaseio.com",
+    "project_id": "tasks-77c8a",
+    "storage_bucket": "tasks-77c8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62490183814:android:3490a3bf0ffab353",
+        "android_client_info": {
+          "package_name": "me.serbelga.tasksapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62490183814-qrd9f03p3usk9vnt6pe7lbndj4cpeb0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoW2dC2ePgbaMNQI_KZIhKcgpiOP0kqwE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
