@@ -18,9 +18,15 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF4688F1),
+        accentColor: const Color(0xFF4688F1), //FAB color
+        /*
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.red,
+          textTheme: ButtonTextTheme.normal,
+        ),*/
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'My tasks'),
     );
   }
 }
@@ -53,7 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      //_counter++;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SecondRoute()),
+      );
     });
   }
 
@@ -71,6 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      bottomNavigationBar: new BottomAppBar(
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu),),
+          ],
+        ),
+      ),
+      floatingActionButton: new FloatingActionButton.extended(
+        icon: Icon(Icons.add),
+        label: Text('Add a new task'),
+        onPressed: _incrementCounter,
+      ),
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerDocked,
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -100,12 +125,35 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Create task"),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Go back!'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
