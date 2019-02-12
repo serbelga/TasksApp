@@ -1,5 +1,5 @@
-# flutter_tasks_app
+# Tasks App
 
 A Flutter application for write simple tasks.
-Flutter + Firebase
-<img src="./assets/image.svg?sanitize=true" width="120" height="120">
+
+<img src="./assets/image.svg?sanitize=true" width="720" height="240">
