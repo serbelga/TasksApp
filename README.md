@@ -1,6 +1,6 @@
 # Tasks App
 
-A Flutter application for write simple tasks.
+A Flutter application for write simple tasks. WIP.
 
 <img src="./resources/image.svg?sanitize=true" width="720" height="240">
 
