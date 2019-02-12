@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'colors.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,13 +12,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Montserrat',
-        primaryColor: const Color(0xFF4688F1),
+        primaryColor: primaryColor,
         primaryTextTheme: TextTheme(
             title: TextStyle(
                 //color: const Color(0xFF4688F1),
 
                 )),
-        accentColor: const Color(0xFF4688F1), //FAB color
+        accentColor: primaryColor, //FAB color
         /*
         buttonTheme: ButtonThemeData(
           buttonColor: Colors.red,
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => SecondRoute()),
+        MaterialPageRoute(builder: (context) => MyCustomForm()),
       );
     });
   }
@@ -139,17 +140,6 @@ class Record {
   String toString() => "Record<$title:$body>";
 }
 
-class SecondRoute extends StatelessWidget {
-  final myController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Create task",
-      home: MyCustomForm(),
-    );
-  }
-}
 
 // Define a Custom Form Widget
 class MyCustomForm extends StatefulWidget {
@@ -204,43 +194,19 @@ class _MyCustomFormState extends State<MyCustomForm> {
       ),
       floatingActionButton: new FloatingActionButton(
         child: Icon(Icons.check),
-        /*
-        onPressed: () {
-          Navigator.pop(context);
-
-          //final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
-
-          // Find the Scaffold in the Widget tree and use it to show a SnackBar
-          //Scaffold.of(context).showSnackBar(snackBar);
-        },*/
         onPressed: () => Firestore.instance.runTransaction((transaction) async {
           Map<String, dynamic> data = new Map();
-          data['title'] = titleTextController.text;
-          data['body'] = bodyTextController.text;
-          Firestore.instance.collection('tasks').add(data);
+          if (titleTextController.text == "" || bodyTextController.text == "") {
 
+            Navigator.pop(context);
+          } else {
+            data['title'] = titleTextController.text;
+            data['body'] = bodyTextController.text;
+            Firestore.instance.collection('tasks').add(data);
+            Navigator.pop(context);
+          }
         }),
       ),
-      /*
-      floatingActionButton: FloatingActionButton(
-        // When the user presses the button, show an alert dialog with the
-        // text the user has typed into our text field.
-        onPressed: () {
-          return showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                // Retrieve the text the user has typed in using our
-                // TextEditingController
-                content: Text(myController.text),
-              );
-            },
-          );
-        },
-        tooltip: 'Show me the value!',
-        child: Icon(Icons.text_fields),
-      ),
-      */
     );
   }
 }
