@@ -1,4 +1,4 @@
-# flutter_tasks_app
+# Tasks App
 
 A Flutter application for write simple tasks.
 
